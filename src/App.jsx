@@ -328,8 +328,17 @@ function App() {
                       </td>
                       <td><span className={`badge ${item.status.replace(/\s/g, "-").replace("الـ", "url")}`}>{item.status}</span></td>
                       <td className="notes">{item.notes}</td>
-                      <td>{item.created_at ? new Date(item.created_at).toLocaleString("ar-SA") : ""}</td>
-                      <td>
+<td>
+  {item.created_at
+    ? new Date(item.created_at).toLocaleString("ar-SA-u-ca-gregory", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+    : ""}
+</td>                      <td>
                         <div className="rowActions">
                           <button className="miniBtn" onClick={() => openEditModal(item)}><Edit size={15} /></button>
                           <button className="miniBtn danger" onClick={() => deleteAppointment(item.id)}><Trash2 size={15} /></button>
